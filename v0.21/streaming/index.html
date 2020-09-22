@@ -132,7 +132,7 @@ function, which takes a <code>Request[F]</code> and a <code>Response[F] =&gt; St
 <code>Stream[F, A]</code>. Since an <code>EntityBody[F]</code> is just a <code>Stream[F, Byte]</code>, then, the easiest way
 to consume a stream is just:</p>
 
-<pre><code class="language-scala">client.stream(req).flatMap(_)
+<pre><code class="language-scala">client.stream(req).flatMap(_.body)
 </code></pre>
 
 <p>That gives you a <code>Stream[F, Byte]</code>, but you probably want something other than a <code>Byte</code>.
