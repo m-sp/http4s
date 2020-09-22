@@ -132,7 +132,7 @@ function, which takes a <code>Request[F]</code> and a <code>Response[F] =&gt; St
 <code>Stream[F, A]</code>. Since an <code>EntityBody[F]</code> is just a <code>Stream[F, Byte]</code>, then, the easiest way
 to consume a stream is just:</p>
 
-<pre><code class="language-scala">client.stream(req).flatMap(_)
+<pre><code class="language-scala">client.stream(req).flatMap(_.body)
 </code></pre>
 
 <p>That gives you a <code>Stream[F, Byte]</code>, but you probably want something other than a <code>Byte</code>.
@@ -141,7 +141,7 @@ Here&rsquo;s some code intended to consume <a href="https://dev.twitter.com/stre
 <p>First, let&rsquo;s assume we want to use <a href="https://circe.github.io/circe/">Circe</a> for JSON support. Please see <a href="../json">json</a> for details.</p>
 
 <pre><code class="language-scala">libraryDependencies ++= Seq(
-  &quot;org.http4s&quot; %% &quot;http4s-circe&quot; % &quot;1.0.0-M4&#43;60-1f6917ce-SNAPSHOT&quot;,
+  &quot;org.http4s&quot; %% &quot;http4s-circe&quot; % &quot;1.0.0-M4&#43;72-c482bd52-SNAPSHOT&quot;,
   &quot;io.circe&quot; %% &quot;circe-generic&quot; % &quot;0.13.0&quot;
 )
 </code></pre>
