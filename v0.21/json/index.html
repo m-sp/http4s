@@ -177,7 +177,7 @@ val greeting = hello(&quot;world&quot;)
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: application/json, Content-Length: 17),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@288da3ae
+//   io.chrisdavenport.vault.Vault@73c1c0b5
 // )
 </code></pre>
 
@@ -194,7 +194,7 @@ useful on client requests:</p>
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: application/json, Content-Length: 16),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@3ff6d20
+//   io.chrisdavenport.vault.Vault@12a90575
 // )
 </code></pre>
 
@@ -230,7 +230,7 @@ Let&rsquo;s provide an encoder:</p>
   Encoder.instance { (hello: Hello) =&gt;
     json&quot;&quot;&quot;{&quot;hello&quot;: ${hello.name}}&quot;&quot;&quot;
   }
-// HelloEncoder: Encoder[Hello] = io.circe.Encoder$$anon$3@13215a7f
+// HelloEncoder: Encoder[Hello] = io.circe.Encoder$$anon$3@451b1d0f
 
 Hello(&quot;Alice&quot;).asJson
 // res4: Json = JObject(object[hello -&gt; &quot;Alice&quot;])
@@ -256,7 +256,7 @@ and responses for our case classes:</p>
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: application/json, Content-Length: 17),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@75b844c4
+//   io.chrisdavenport.vault.Vault@342aaaff
 // )
 POST(User(&quot;Bob&quot;).asJson, uri&quot;/hello&quot;).unsafeRunSync()
 // res7: Request[IO] = (
@@ -265,7 +265,7 @@ POST(User(&quot;Bob&quot;).asJson, uri&quot;/hello&quot;).unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: application/json, Content-Length: 14),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@1c4dbf37
+//   io.chrisdavenport.vault.Vault@77322059
 // )
 </code></pre>
 
@@ -307,7 +307,7 @@ the way from HTTP to your type <code>A</code>.  Specifically, <code>jsonOf[A]</c
 an implicit <code>Decoder[A]</code> and makes a <code>EntityDecoder[A]</code>:</p>
 
 <pre><code class="language-scala">implicit val userDecoder = jsonOf[IO, User]
-// userDecoder: EntityDecoder[IO, User] = org.http4s.EntityDecoder$$anon$2@6dc4742e
+// userDecoder: EntityDecoder[IO, User] = org.http4s.EntityDecoder$$anon$2@203bb367
 Ok(&quot;&quot;&quot;{&quot;name&quot;:&quot;Alice&quot;}&quot;&quot;&quot;).flatMap(_.as[User]).unsafeRunSync()
 // res11: User = User(&quot;Alice&quot;)
 
