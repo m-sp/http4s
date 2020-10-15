@@ -145,7 +145,7 @@ case class Video(body: String) extends Resp
 //       HttpVersion(1, 1),
 //       Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 0),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@1693265
+//       io.chrisdavenport.vault.Vault@3e67c029
 //     )
 //   ),
 //   &lt;function1&gt;,
@@ -156,15 +156,15 @@ val audioDec = EntityDecoder.decodeBy(MediaType.audio.ogg) { (m: Media[IO]) =&gt
     m.as[String].map(s =&gt; Audio(s).asRight[DecodeFailure])
   }
 }
-// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@1ee2e53b
+// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@2cea085c
 val videoDec = EntityDecoder.decodeBy(MediaType.video.ogg) { (m: Media[IO]) =&gt;
   EitherT {
     m.as[String].map(s =&gt; Video(s).asRight[DecodeFailure])
   }
 }
-// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@3295ecbe
+// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@32bb28b0
 implicit val bothDec = audioDec.widen[Resp] orElse videoDec.widen[Resp]
-// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@5ce669d3
+// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@460f2641
 println(response.flatMap(_.as[Resp]).unsafeRunSync())
 // Audio()
 </code></pre>
@@ -217,6 +217,10 @@ cause conflicts with the builtin Decoders.</p>
             
             <li class="nav-item">
 	      <a class="nav-link" href="/v0.21/">Quick Start</a>
+            </li>
+            
+            <li class="nav-item">
+	      <a class="nav-link" href="/v0.21/integrations/">Integrations</a>
             </li>
             
             <li class="nav-item">

@@ -111,7 +111,7 @@ import org.http4s.server.middleware._
     Ok()
 } 
 // service: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12539/1452271155@51d8a948
+//   org.http4s.HttpRoutes$$$Lambda$12547/531332509@4283123f
 // ) 
 
 val request = Request[IO](Method.GET, uri&quot;/&quot;)
@@ -121,7 +121,7 @@ val request = Request[IO](Method.GET, uri&quot;/&quot;)
 //   HttpVersion(1, 1),
 //   Headers(),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@6ab7067f
+//   io.chrisdavenport.vault.Vault@60515126
 // )
 
 service.orNotFound(request).unsafeRunSync()
@@ -130,7 +130,7 @@ service.orNotFound(request).unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Length: 0),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@294bce05
+//   io.chrisdavenport.vault.Vault@12579b7
 // )
 </code></pre>
 
@@ -147,7 +147,7 @@ val csrfBuilder = CSRF[IO,IO](key, defaultOriginCheck)
 but we will create a fairly simple CSRF Middleware in our example.</p>
 
 <pre><code class="language-scala">val csrf = csrfBuilder.withCookieName(cookieName).withCookieDomain(Some(&quot;localhost&quot;)).withCookiePath(Some(&quot;/&quot;)).build
-// csrf: CSRF[IO, IO] = org.http4s.server.middleware.CSRF@6eb13677
+// csrf: CSRF[IO, IO] = org.http4s.server.middleware.CSRF@645e4514
 </code></pre>
 
 <p>Now we need to wrap this around our service! We&rsquo;re gonna start with a safe call</p>
@@ -160,15 +160,15 @@ but we will create a fairly simple CSRF Middleware in our example.</p>
 //   HttpVersion(1, 1),
 //   Headers(Origin: http://localhost),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@7ab75000
+//   io.chrisdavenport.vault.Vault@3e16b14a
 // )
 val resp = csrf.validate()(service.orNotFound)(dummyRequest).unsafeRunSync()
 // resp: Response[IO] = Response(
 //   Status(200),
 //   HttpVersion(1, 1),
-//   Headers(Content-Length: 0, Set-Cookie: csrf-token=7EBA5131419F2BFF0360BE90185D7692E64590CC6BE975545B8CA5FC51CCA7E3-1602569643445-21F12191D95CC37A071DC73C65AF24046A1626A3; Domain=localhost; Path=/; SameSite=Lax; HttpOnly),
+//   Headers(Content-Length: 0, Set-Cookie: csrf-token=69DB57A170A3C08AF11FBCDEAD0EE7504B77C821AB75C066BA34818FCA72C836-1602728360843-6A79BB11AB3B840382EDDFAF9CD4EB255A094E08; Domain=localhost; Path=/; SameSite=Lax; HttpOnly),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@26b52ac9
+//   io.chrisdavenport.vault.Vault@eed2245
 // )
 </code></pre>
 
@@ -189,7 +189,7 @@ the browser would send this up with our request, but I needed to do it manually 
 <pre><code class="language-scala">val cookie = resp.cookies.head
 // cookie: ResponseCookie = ResponseCookie(
 //   &quot;csrf-token&quot;,
-//   &quot;7EBA5131419F2BFF0360BE90185D7692E64590CC6BE975545B8CA5FC51CCA7E3-1602569643445-21F12191D95CC37A071DC73C65AF24046A1626A3&quot;,
+//   &quot;69DB57A170A3C08AF11FBCDEAD0EE7504B77C821AB75C066BA34818FCA72C836-1602728360843-6A79BB11AB3B840382EDDFAF9CD4EB255A094E08&quot;,
 //   None,
 //   None,
 //   Some(&quot;localhost&quot;),
@@ -208,17 +208,17 @@ val dummyPostRequest: Request[IO] =
 //   Method(&quot;POST&quot;),
 //   Uri(None, None, &quot;/&quot;, , None),
 //   HttpVersion(1, 1),
-//   Headers(Origin: http://localhost, X-Csrf-Token: 7EBA5131419F2BFF0360BE90185D7692E64590CC6BE975545B8CA5FC51CCA7E3-1602569643445-21F12191D95CC37A071DC73C65AF24046A1626A3, Cookie: csrf-token=7EBA5131419F2BFF0360BE90185D7692E64590CC6BE975545B8CA5FC51CCA7E3-1602569643445-21F12191D95CC37A071DC73C65AF24046A1626A3),
+//   Headers(Origin: http://localhost, X-Csrf-Token: 69DB57A170A3C08AF11FBCDEAD0EE7504B77C821AB75C066BA34818FCA72C836-1602728360843-6A79BB11AB3B840382EDDFAF9CD4EB255A094E08, Cookie: csrf-token=69DB57A170A3C08AF11FBCDEAD0EE7504B77C821AB75C066BA34818FCA72C836-1602728360843-6A79BB11AB3B840382EDDFAF9CD4EB255A094E08),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@75dc2fd9
+//   io.chrisdavenport.vault.Vault@332b8cf7
 // )
 val validateResp = csrf.validate()(service.orNotFound)(dummyPostRequest).unsafeRunSync()
 // validateResp: Response[IO] = Response(
 //   Status(200),
 //   HttpVersion(1, 1),
-//   Headers(Content-Length: 0, Set-Cookie: csrf-token=7EBA5131419F2BFF0360BE90185D7692E64590CC6BE975545B8CA5FC51CCA7E3-1602569643462-267C2837725C59C9C7935DB3F46A369B93EB4294; Domain=localhost; Path=/; SameSite=Lax; HttpOnly),
+//   Headers(Content-Length: 0, Set-Cookie: csrf-token=69DB57A170A3C08AF11FBCDEAD0EE7504B77C821AB75C066BA34818FCA72C836-1602728360857-B5D7ECC73F19DB046A8F19840B1E34990DF91F51; Domain=localhost; Path=/; SameSite=Lax; HttpOnly),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@7a30a0c9
+//   io.chrisdavenport.vault.Vault@54b36fdd
 // )
 </code></pre>
 
@@ -230,6 +230,10 @@ val validateResp = csrf.validate()(service.orNotFound)(dummyPostRequest).unsafeR
             
             <li class="nav-item">
 	      <a class="nav-link" href="/v0.21/">Quick Start</a>
+            </li>
+            
+            <li class="nav-item">
+	      <a class="nav-link" href="/v0.21/integrations/">Integrations</a>
             </li>
             
             <li class="nav-item">

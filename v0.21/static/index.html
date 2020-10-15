@@ -190,7 +190,7 @@ deliver them from there. For example, for all resources in the classpath under <
 
 <pre><code class="language-scala">val routes = resourceService[IO](ResourceService.Config(&quot;/assets&quot;, blocker))
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.server.staticcontent.ResourceService$$$Lambda$13833/883984644@157f0f73
+//   org.http4s.server.staticcontent.ResourceService$$$Lambda$13858/1476152664@648c877c
 // )
 </code></pre>
 
@@ -205,7 +205,7 @@ val routes = HttpRoutes.of[IO] {
     static(path, blocker, request)
 }
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12539/1452271155@23c93350
+//   org.http4s.HttpRoutes$$$Lambda$12547/531332509@7577dfe
 // )
 </code></pre>
 
@@ -236,7 +236,7 @@ val webjars: HttpRoutes[IO] = webjarService(
   )
 )
 // webjars: HttpRoutes[IO] = Kleisli(
-//   org.http4s.server.staticcontent.WebjarService$$$Lambda$13834/1764962148@104e102f
+//   org.http4s.server.staticcontent.WebjarService$$$Lambda$13859/1293954938@2642f2f5
 // )
 </code></pre>
 
@@ -253,6 +253,10 @@ val webjars: HttpRoutes[IO] = webjarService(
             
             <li class="nav-item">
 	      <a class="nav-link" href="/v0.21/">Quick Start</a>
+            </li>
+            
+            <li class="nav-item">
+	      <a class="nav-link" href="/v0.21/integrations/">Integrations</a>
             </li>
             
             <li class="nav-item">

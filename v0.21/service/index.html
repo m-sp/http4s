@@ -154,7 +154,7 @@ greet.</p>
     Ok(s&quot;Hello, $name.&quot;)
 }
 // helloWorldService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12539/1452271155@2e7f2056
+//   org.http4s.HttpRoutes$$$Lambda$12547/531332509@52d05355
 // )
 </code></pre>
 
@@ -187,7 +187,7 @@ val tweetService = HttpRoutes.of[IO] {
     getTweet(tweetId).flatMap(Ok(_))
 }
 // tweetService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12539/1452271155@3e2ffc4c
+//   org.http4s.HttpRoutes$$$Lambda$12547/531332509@2537e211
 // )
 </code></pre>
 
@@ -215,14 +215,14 @@ import org.http4s.server.Router
 
 <pre><code class="language-scala">val services = tweetService &lt;+&gt; helloWorldService
 // services: cats.data.Kleisli[cats.data.OptionT[IO, β$0$], Request[IO], Response[IO]] = Kleisli(
-//   cats.data.KleisliSemigroupK$$Lambda$12540/422141400@6d958e7
+//   cats.data.KleisliSemigroupK$$Lambda$12548/1071579065@72da92b6
 // )
 val httpApp = Router(&quot;/&quot; -&gt; helloWorldService, &quot;/api&quot; -&gt; services).orNotFound
 // httpApp: cats.data.Kleisli[IO, Request[IO], Response[IO]] = Kleisli(
-//   org.http4s.syntax.KleisliResponseOps$$Lambda$12638/582012860@11531913
+//   org.http4s.syntax.KleisliResponseOps$$Lambda$12646/1424566619@777c71e8
 // )
 val serverBuilder = BlazeServerBuilder[IO](global).bindHttp(8080, &quot;localhost&quot;).withHttpApp(httpApp)
-// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@4679f6ff
+// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@2766dea9
 </code></pre>
 
 <p>The <code>bindHttp</code> call isn&rsquo;t strictly necessary as the server will be set to run
@@ -234,11 +234,11 @@ associates the specified routes with this http server instance.</p>
 <pre><code class="language-scala">val fiber = serverBuilder.resource.use(_ =&gt; IO.never).start.unsafeRunSync()
 // fiber: Fiber[IO, Nothing] = Tuple(
 //   Bind(
-//     Async(cats.effect.IO$$$Lambda$12533/489110810@775afe0, false),
-//     cats.syntax.MonadErrorRethrowOps$$$Lambda$12662/1771945141@4ba7c189
+//     Async(cats.effect.IO$$$Lambda$12541/1499732566@3ddb873e, false),
+//     cats.syntax.MonadErrorRethrowOps$$$Lambda$12670/964318287@1bb2ed11
 //   ),
 //   Suspend(
-//     cats.effect.internals.IOConnection$Impl$$Lambda$12658/854455241@42b5d26f
+//     cats.effect.internals.IOConnection$Impl$$Lambda$12666/742839474@f552cbe
 //   )
 // )
 </code></pre>
@@ -319,6 +319,10 @@ object MainWithResource extends IOApp {
             
             <li class="nav-item">
 	      <a class="nav-link" href="/v0.21/">Quick Start</a>
+            </li>
+            
+            <li class="nav-item">
+	      <a class="nav-link" href="/v0.21/integrations/">Integrations</a>
             </li>
             
             <li class="nav-item">
