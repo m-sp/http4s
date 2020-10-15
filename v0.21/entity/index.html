@@ -145,26 +145,56 @@ case class Video(body: String) extends Resp
 //       HttpVersion(1, 1),
 //       Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 0),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@38abb82b
+//       io.chrisdavenport.vault.Vault@1e30cd3d
 //     )
 //   ),
 //   &lt;function1&gt;,
-//   0
-// )
+//   StackTrace(
+//     List(
+//       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//       cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//       cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//       cats.effect.IO.map(IO.scala:106),
+//       repl.MdocSession$App.&lt;init&gt;(entity.md:32),
+//       repl.MdocSession$.app(entity.md:3),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withErr(Console.scala:196),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withOut(Console.scala:167),
+//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
+//       mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:186),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:153),
+//       mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
+//       mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
+//       mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//       mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
+//       mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:157),
+//       scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:126),
+//       scala.collection.LinearSeqOptimized.foldLeft$(LinearSeqOptimized.scala:122),
+//       scala.collection.immutable.List.foldLeft(List.scala:91),
+//       mdoc.internal.cli.MainOps.generateCompleteSite(MainOps.scala:155),
+//       mdoc.internal.cli.MainOps.run(MainOps.scala:178),
+//       mdoc.internal.cli.MainOps$.process(MainOps.scala:270),
+// ...
 val audioDec = EntityDecoder.decodeBy(MediaType.audio.ogg) { (m: Media[IO]) =&gt;
   EitherT {
     m.as[String].map(s =&gt; Audio(s).asRight[DecodeFailure])
   }
 }
-// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@653c88d5
+// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@14cd2e3a
 val videoDec = EntityDecoder.decodeBy(MediaType.video.ogg) { (m: Media[IO]) =&gt;
   EitherT {
     m.as[String].map(s =&gt; Video(s).asRight[DecodeFailure])
   }
 }
-// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@3b53da70
+// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@55d71d6f
 implicit val bothDec = audioDec.widen[Resp] orElse videoDec.widen[Resp]
-// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@22c41a1
+// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@7114786c
 println(response.flatMap(_.as[Resp]).unsafeRunSync())
 // Audio()
 </code></pre>

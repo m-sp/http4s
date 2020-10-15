@@ -154,7 +154,7 @@ greet.</p>
     Ok(s&quot;Hello, $name.&quot;)
 }
 // helloWorldService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@72c10429
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@2fb95f74
 // )
 </code></pre>
 
@@ -187,7 +187,7 @@ val tweetService = HttpRoutes.of[IO] {
     getTweet(tweetId).flatMap(Ok(_))
 }
 // tweetService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@628079c8
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@5fdc4ae5
 // )
 </code></pre>
 
@@ -215,14 +215,14 @@ import org.http4s.server.Router
 
 <pre><code class="language-scala">val services = tweetService &lt;+&gt; helloWorldService
 // services: cats.data.Kleisli[cats.data.OptionT[IO, β$0$], Request[IO], Response[IO]] = Kleisli(
-//   cats.data.KleisliSemigroupK$$Lambda$12558/821486314@779ab29c
+//   cats.data.KleisliSemigroupK$$Lambda$12546/1045944150@5af2f199
 // )
 val httpApp = Router(&quot;/&quot; -&gt; helloWorldService, &quot;/api&quot; -&gt; services).orNotFound
 // httpApp: cats.data.Kleisli[IO, Request[IO], Response[IO]] = Kleisli(
-//   org.http4s.syntax.KleisliResponseOps$$Lambda$12656/892629444@11416cb2
+//   org.http4s.syntax.KleisliResponseOps$$Lambda$12644/394499124@c649acd
 // )
 val serverBuilder = BlazeServerBuilder[IO](global).bindHttp(8080, &quot;localhost&quot;).withHttpApp(httpApp)
-// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@6bdbc2ff
+// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@69c326ca
 </code></pre>
 
 <p>The <code>bindHttp</code> call isn&rsquo;t strictly necessary as the server will be set to run
@@ -234,13 +234,42 @@ associates the specified routes with this http server instance.</p>
 <pre><code class="language-scala">val fiber = serverBuilder.resource.use(_ =&gt; IO.never).start.unsafeRunSync()
 // fiber: Fiber[IO, Nothing] = Tuple(
 //   Bind(
-//     Async(cats.effect.IO$$$Lambda$12551/1431516913@af4b875, false),
-//     cats.syntax.MonadErrorRethrowOps$$$Lambda$12682/766378772@28d8e5e5
-//   ),
-//   Suspend(
-//     cats.effect.internals.IOConnection$Impl$$Lambda$12676/1369112230@32e638b0
-//   )
-// )
+//     Async(
+//       cats.effect.internals.IOAsync$$$Lambda$12538/1526133661@5475d275,
+//       false,
+//       StackTrace(
+//         List(
+//           cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//           cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//           cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//           cats.effect.internals.IOAsync$.apply(IOAsync.scala:30),
+//           cats.effect.IO$.async(IO.scala:1257),
+//           cats.effect.internals.IOFromFuture$.apply(IOFromFuture.scala:37),
+//           cats.effect.internals.IOStart$.fiber(IOStart.scala:48),
+//           cats.effect.internals.IOStart$.$anonfun$apply$1(IOStart.scala:42),
+//           cats.effect.internals.IOStart$.$anonfun$apply$1$adapted(IOStart.scala:29),
+//           cats.effect.internals.IORunLoop$RestartCallback.start(IORunLoop.scala:439),
+//           cats.effect.internals.IORunLoop$.cats$effect$internals$IORunLoop$$loop(IORunLoop.scala:155),
+//           cats.effect.internals.IORunLoop$.$anonfun$suspendAsync$1(IORunLoop.scala:315),
+//           cats.effect.internals.IORunLoop$.$anonfun$suspendAsync$1$adapted(IORunLoop.scala:314),
+//           cats.effect.internals.IORunLoop$RestartCallback.start(IORunLoop.scala:439),
+//           cats.effect.internals.IORunLoop$.cats$effect$internals$IORunLoop$$loop(IORunLoop.scala:155),
+//           cats.effect.internals.IORunLoop$.start(IORunLoop.scala:37),
+//           cats.effect.IO.unsafeRunAsync(IO.scala:274),
+//           cats.effect.internals.IOPlatform$.unsafeResync(IOPlatform.scala:39),
+//           cats.effect.IO.unsafeRunTimed(IO.scala:342),
+//           cats.effect.IO.unsafeRunSync(IO.scala:256),
+//           repl.MdocSession$App.&lt;init&gt;(client.md:56),
+//           repl.MdocSession$.app(client.md:3),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
+//           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//           scala.Console$.withErr(Console.scala:196),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
+//           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//           scala.Console$.withOut(Console.scala:167),
+//           mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.sca...
 </code></pre>
 
 <p>Use curl, or your favorite HTTP client, to see your service in action:</p>

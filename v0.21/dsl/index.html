@@ -139,7 +139,7 @@ anything.  The right hand side of the request must return a
     IO(Response(Status.Ok))
 }
 // service: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@46aa968e
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@13059f77
 // )
 </code></pre>
 
@@ -156,14 +156,42 @@ and experiment directly in the REPL.</p>
 //   HttpVersion(1, 1),
 //   Headers(),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@30eae80f
+//   io.chrisdavenport.vault.Vault@4b434682
 // )
 
 val io = service.orNotFound.run(getRoot)
 // io: IO[Response[IO]] = Map(
-//   Suspend(org.http4s.HttpRoutes$$$Lambda$12871/1348470921@81eadda),
-//   cats.data.OptionT$$Lambda$12876/289858162@5ad43bc7,
-//   0
+//   Suspend(org.http4s.HttpRoutes$$$Lambda$12850/450349437@649275fc),
+//   cats.data.OptionT$$Lambda$12853/857457511@369fb8d6,
+//   StackTrace(
+//     List(
+//       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//       cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//       cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//       cats.effect.IO.map(IO.scala:106),
+//       cats.effect.IOLowPriorityInstances$IOEffect.map(IO.scala:870),
+//       cats.effect.IOLowPriorityInstances$IOEffect.map(IO.scala:863),
+//       cats.data.OptionT.getOrElse(OptionT.scala:99),
+//       org.http4s.syntax.KleisliResponseOps.$anonfun$orNotFound$1(KleisliSyntax.scala:38),
+//       org.http4s.server.blaze.Http1ServerStage.$anonfun$raceTimeout$1(Http1ServerStage.scala:340),
+//       org.http4s.server.blaze.Http1ServerStage$$anon$2.$anonfun$run$1(Http1ServerStage.scala:183),
+//       cats.effect.internals.IORunLoop$.liftedTree1$1(IORunLoop.scala:113),
+//       cats.effect.internals.IORunLoop$.cats$effect$internals$IORunLoop$$loop(IORunLoop.scala:113),
+//       cats.effect.internals.IORunLoop$.startCancelable(IORunLoop.scala:47),
+//       cats.effect.IO.unsafeRunCancelable(IO.scala:305),
+//       cats.effect.IO.$anonfun$runCancelable$1(IO.scala:234),
+//       cats.effect.internals.IORunLoop$.step(IORunLoop.scala:235),
+//       cats.effect.IO.unsafeRunTimed(IO.scala:338),
+//       cats.effect.IO.unsafeRunSync(IO.scala:256),
+//       cats.effect.SyncIO.unsafeRunSync(SyncIO.scala:51),
+//       org.http4s.server.blaze.Http1ServerStage$$anon$2.run(Http1ServerStage.scala:189),
+//       java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1402),
+//       java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:289),
+//       java.util.concurrent.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1056),
+//       java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1692),
+//       java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:175)
+//     )
+//   )
 // )
 </code></pre>
 
@@ -184,7 +212,7 @@ run it.</p>
 //   HttpVersion(1, 1),
 //   Headers(),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@4858c8f5
+//   io.chrisdavenport.vault.Vault@9de6755
 // )
 </code></pre>
 
@@ -208,7 +236,7 @@ applying a status code:</p>
 //     HttpVersion(1, 1),
 //     Headers(Content-Length: 0),
 //     Stream(..),
-//     io.chrisdavenport.vault.Vault@2f95eb61
+//     io.chrisdavenport.vault.Vault@58f857ba
 //   )
 // )
 val ok = okIo.unsafeRunSync()
@@ -217,7 +245,7 @@ val ok = okIo.unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Length: 0),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@2f95eb61
+//   io.chrisdavenport.vault.Vault@58f857ba
 // )
 </code></pre>
 
@@ -232,7 +260,7 @@ service:</p>
 //   HttpVersion(1, 1),
 //   Headers(Content-Length: 0),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@5298f334
+//   io.chrisdavenport.vault.Vault@2f32e4cc
 // )
 </code></pre>
 
@@ -248,7 +276,7 @@ response:</p>
 //   HttpVersion(1, 1),
 //   Headers(),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@2969e0a3
+//   io.chrisdavenport.vault.Vault@64a0b0f4
 // )
 </code></pre>
 
@@ -303,13 +331,44 @@ and invalidate cookies. Adding a cookie will generate the correct <code>Set-Cook
 //       HttpVersion(1, 1),
 //       Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 12),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@27789a1b
+//       io.chrisdavenport.vault.Vault@1e3e87fa
 //     )
 //   ),
-//   &lt;function1&gt;
-// )
+//   &lt;function1&gt;,
+//   StackTrace(
+//     List(
+//       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//       cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//       cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//       cats.effect.IO.flatMap(IO.scala:133),
+//       repl.MdocSession$App.&lt;init&gt;(dsl.md:110),
+//       repl.MdocSession$.app(dsl.md:3),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withErr(Console.scala:196),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withOut(Console.scala:167),
+//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
+//       mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:186),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:153),
+//       mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
+//       mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
+//       mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//       mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
+//       mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:157),
+//       scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:126),
+//       scala.collection.LinearSeqOptimized.foldLeft$(LinearSeqOptimized.scala:122),
+//       scala.collection.immutable.List.foldLeft(List.scala:91),
+//       mdoc.internal.cli.MainOps.generateCompleteSite(MainOps.scala:155),
+//       mdoc.internal.cli.MainOps.run(MainOps.scala:178),
+//       mdoc.internal.cli.MainOps$.process(MainOps.scala:270),
+// ...
 cookieResp.unsafeRunSync().headers
-// res6: Headers = Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 12, Set-Cookie: foo=bar; Expires=Thu, 15 Oct 2020 05:15:28 GMT; SameSite=Lax; Secure; HttpOnly)
+// res6: Headers = Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 12, Set-Cookie: foo=bar; Expires=Thu, 15 Oct 2020 15:37:14 GMT; SameSite=Lax; Secure; HttpOnly)
 </code></pre>
 
 <p>To request a cookie to be removed on the client, you need to set the cookie value
@@ -341,7 +400,7 @@ box:</p>
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 17),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@27b6b376
+//   io.chrisdavenport.vault.Vault@4615600
 // )
 
 import java.nio.charset.StandardCharsets.UTF_8
@@ -351,7 +410,7 @@ Ok(&quot;binary&quot;.getBytes(UTF_8)).unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: application/octet-stream, Content-Length: 6),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@32a2e5e7
+//   io.chrisdavenport.vault.Vault@3ccdd6c4
 // )
 </code></pre>
 
@@ -386,7 +445,7 @@ effectful, unless we wrap it in <code>IO</code>:</p>
 suspended future is shifted to the correct thread pool.</p>
 
 <pre><code class="language-scala">implicit val cs: ContextShift[IO] = IO.contextShift(ExecutionContext.global)
-// cs: ContextShift[IO] = cats.effect.internals.IOContextShift@119b1672
+// cs: ContextShift[IO] = cats.effect.internals.IOContextShift@6af415b4
 
 val io = Ok(IO.fromFuture(IO(Future {
   println(&quot;I run when the future is constructed.&quot;)
@@ -394,11 +453,45 @@ val io = Ok(IO.fromFuture(IO(Future {
 })))
 // io: IO[Response[IO]] = Bind(
 //   Async(
-//     cats.effect.internals.IOBracket$$$Lambda$13391/840060157@759f291b,
-//     false
-//   ),
-//   org.http4s.dsl.impl.EntityResponseGenerator$$Lambda$13392/764094782@773818d3
-// )
+//     cats.effect.internals.IOAsync$$$Lambda$12538/1526133661@73af2692,
+//     false,
+//     StackTrace(
+//       List(
+//         cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//         cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//         cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//         cats.effect.internals.IOAsync$.apply(IOAsync.scala:30),
+//         cats.effect.internals.IOBracket$.guaranteeCase(IOBracket.scala:129),
+//         cats.effect.IO.guaranteeCase(IO.scala:672),
+//         cats.effect.IO.guarantee(IO.scala:642),
+//         cats.effect.IO$.fromFuture(IO.scala:1413),
+//         repl.MdocSession$App.&lt;init&gt;(dsl.md:162),
+//         repl.MdocSession$.app(dsl.md:3),
+//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
+//         scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//         scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//         scala.Console$.withErr(Console.scala:196),
+//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
+//         scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//         scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//         scala.Console$.withOut(Console.scala:167),
+//         mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
+//         mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
+//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:186),
+//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:153),
+//         mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
+//         mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
+//         mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//         mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
+//         mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:157),
+//         scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:126),
+//         scala.collection.LinearSeqOptimized.foldLeft$(LinearSeqOptimized.scala:122),
+//         scala.collection.immutable.List.foldLeft(List.scala:91),
+//         mdoc.internal.cli.MainOps.generateCompleteSite(MainOps.scala:155),
+//         mdoc.internal.cli.MainOps.run(MainOps.scala:178),
+//         mdoc.internal.cli.MainOps$.process(MainOps.scala:270),
+//         mdoc.Main$.process(Main.scala:26),
+// ...
 io.unsafeRunSync()
 // I run when the future is constructed.
 // res11: Response[IO] = Response(
@@ -406,7 +499,7 @@ io.unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 26),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@433f8953
+//   io.chrisdavenport.vault.Vault@39c582e
 // )
 </code></pre>
 
@@ -419,8 +512,45 @@ of course prefer to operate in <code>F</code>s:</p>
 })
 // io: IO[Response[IO]] = Bind(
 //   Delay(&lt;function0&gt;),
-//   org.http4s.dsl.impl.EntityResponseGenerator$$Lambda$13392/764094782@a5e2fc0
-// )
+//   org.http4s.dsl.impl.EntityResponseGenerator$$Lambda$13411/1766967831@5dd2a4b9,
+//   StackTrace(
+//     List(
+//       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//       cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//       cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//       cats.effect.IO.flatMap(IO.scala:133),
+//       cats.effect.IOLowPriorityInstances$IOEffect.flatMap(IO.scala:886),
+//       cats.effect.IOLowPriorityInstances$IOEffect.flatMap(IO.scala:863),
+//       org.http4s.dsl.impl.EntityResponseGenerator.apply(ResponseGenerator.scala:59),
+//       org.http4s.dsl.impl.EntityResponseGenerator.apply$(ResponseGenerator.scala:58),
+//       org.http4s.dsl.impl.Responses$OkOps.apply(Responses.scala:176),
+//       repl.MdocSession$App.&lt;init&gt;(dsl.md:162),
+//       repl.MdocSession$.app(dsl.md:3),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withErr(Console.scala:196),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
+//       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
+//       scala.Console$.withOut(Console.scala:167),
+//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
+//       mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:186),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:153),
+//       mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
+//       mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
+//       mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//       mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
+//       mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:157),
+//       scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:126),
+//       scala.collection.LinearSeqOptimized.foldLeft$(LinearSeqOptimized.scala:122),
+//       scala.collection.immutable.List.foldLeft(List.scala:91),
+//       mdoc.internal.cli.MainOps.generateCompleteSite(MainOps.scala:155),
+//       mdoc.internal.cli.MainOps.run(MainOps.scala:178),
+//       mdoc.internal.cli.MainOps$.process(MainOps.scala:270),
+//       mdoc.Main$.process(Main.scala:26),
+// ...
 io.unsafeRunSync()
 // I run when the IO is run.
 // res12: Response[IO] = Response(
@@ -428,7 +558,7 @@ io.unsafeRunSync()
 //   HttpVersion(1, 1),
 //   Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 21),
 //   Stream(..),
-//   io.chrisdavenport.vault.Vault@6050861
+//   io.chrisdavenport.vault.Vault@17c14302
 // )
 </code></pre>
 
@@ -461,14 +591,43 @@ import scala.concurrent.duration._
 <pre><code class="language-scala">val dripOutIO = drip.through(fs2.text.lines).through(_.evalMap(s =&gt; {IO{println(s); s}})).compile.drain
 // dripOutIO: IO[Unit] = Map(
 //   Bind(
-//     Delay(fs2.Stream$CompileOps$$Lambda$13015/1385238876@31cc66f2),
-//     fs2.Stream$Compiler$$anon$3$$Lambda$13019/1956600540@e061489
-//   ),
-//   fs2.Stream$CompileOps$$Lambda$13017/1990641231@75dd1aa6,
-//   0
-// )
+//     Delay(fs2.Stream$CompileOps$$Lambda$13009/1395733802@1dd06cde),
+//     fs2.Stream$Compiler$$anon$5$$Lambda$13013/661640938@7cec0a62,
+//     StackTrace(
+//       List(
+//         cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
+//         cats.effect.internals.IOTracing$.buildCachedFrame(IOTracing.scala:39),
+//         cats.effect.internals.IOTracing$.cached(IOTracing.scala:34),
+//         cats.effect.IO.flatMap(IO.scala:133),
+//         cats.effect.IOLowPriorityInstances$IOEffect.flatMap(IO.scala:886),
+//         cats.effect.IOLowPriorityInstances$IOEffect.flatMap(IO.scala:863),
+//         cats.FlatMap$Ops.flatMap(FlatMap.scala:229),
+//         cats.FlatMap$Ops.flatMap$(FlatMap.scala:229),
+//         cats.FlatMap$ToFlatMapOps$$anon$2.flatMap(FlatMap.scala:243),
+//         fs2.Stream$Compiler$$anon$5.apply(Stream.scala:4408),
+//         fs2.Stream$CompileOps.foldChunks(Stream.scala:4453),
+//         fs2.Stream$CompileOps.drain(Stream.scala:4434),
+//         org.http4s.blazecore.util.EntityBodyWriter.writeEntityBody(EntityBodyWriter.scala:52),
+//         org.http4s.blazecore.util.EntityBodyWriter.writeEntityBody$(EntityBodyWriter.scala:51),
+//         org.http4s.blazecore.util.IdentityWriter.writeEntityBody(IdentityWriter.scala:20),
+//         org.http4s.blazecore.util.Http1Writer.$anonfun$write$2(Http1Writer.scala:23),
+//         cats.effect.internals.IORunLoop$.cats$effect$internals$IORunLoop$$loop(IORunLoop.scala:181),
+//         cats.effect.internals.IORunLoop$RestartCallback.signal(IORunLoop.scala:455),
+//         cats.effect.internals.IORunLoop$RestartCallback.apply(IORunLoop.scala:476),
+//         cats.effect.internals.IORunLoop$RestartCallback.apply(IORunLoop.scala:414),
+//         cats.effect.internals.Callback$AsyncIdempotentCallback.run(Callback.scala:131),
+//         cats.effect.internals.Trampoline.cats$effect$internals$Trampoline$$immediateLoop(Trampoline.scala:67),
+//         cats.effect.internals.Trampoline.startLoop(Trampoline.scala:35),
+//         cats.effect.internals.TrampolineEC$JVMTrampoline.super$startLoop(TrampolineEC.scala:90),
+//         cats.effect.internals.TrampolineEC$JVMTrampoline.$anonfun$startLoop$1(TrampolineEC.scala:90),
+//         scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
+//         scala.concurrent.BlockContext$.withBlockContext(BlockContext.scala:85),
+//         cats.effect.internals.TrampolineEC$JVMTrampoline.startLoop(TrampolineEC.scala:90),
+//         cats.effect.internals.Trampoline.execute(Trampoline.scala:43),
+//         cats.effect.internals.TrampolineEC.execute(TrampolineEC.scala:42),
+// ...
 dripOutIO.unsafeRunSync()
-// 103854814 nanoseconds204004323 nanoseconds304647833 nanoseconds405369542 nanoseconds506033052 nanoseconds606769761 nanoseconds707504271 nanoseconds808516681 nanoseconds909148890 nanoseconds1009801100 nanoseconds
+// 104168499 nanoseconds204170966 nanoseconds305455143 nanoseconds406519819 nanoseconds507762195 nanoseconds608401568 nanoseconds709074640 nanoseconds809746012 nanoseconds910256283 nanoseconds1010737249 nanoseconds
 </code></pre>
 
 <p>When wrapped in a <code>Response[F]</code>, http4s will flush each chunk of a
@@ -483,7 +642,7 @@ transfer encoding:</p>
 //     HttpVersion(1, 1),
 //     Headers(Content-Type: text/plain; charset=UTF-8, Transfer-Encoding: chunked),
 //     Stream(..),
-//     io.chrisdavenport.vault.Vault@5b35427c
+//     io.chrisdavenport.vault.Vault@34d38e2a
 //   )
 // )
 </code></pre>
@@ -506,7 +665,7 @@ right side, the path info.  The following matches a request to <code>GET
   case GET -&gt; Root / &quot;hello&quot; =&gt; Ok(&quot;hello&quot;)
 }
 // res15: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@91c441e
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@291702e1
 // )
 </code></pre>
 
@@ -581,7 +740,7 @@ val usersService = HttpRoutes.of[IO] {
     Ok(getUserName(userId))
 }
 // usersService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@3780abe8
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@37bf2d81
 // )
 </code></pre>
 
@@ -610,7 +769,7 @@ val dailyWeatherService = HttpRoutes.of[IO] {
     Ok(getTemperatureForecast(localDate).map(s&quot;The temperature on $localDate will be: &quot; + _))
 }
 // dailyWeatherService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@2a959f94
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@2b9c8e0e
 // )
 
 println(GET(uri&quot;/weather/temperature/2016-11-05&quot;).flatMap(dailyWeatherService.orNotFound(_)).unsafeRunSync())
@@ -636,7 +795,7 @@ then parsing them as a <code>String</code> and <code>java.time.Year</code>.</p>
 
 implicit val yearQueryParamDecoder: QueryParamDecoder[Year] =
   QueryParamDecoder[Int].map(Year.of)
-// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$7@5b420e18
+// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$7@396e789
 
 object YearQueryParamMatcher extends QueryParamDecoderMatcher[Year](&quot;year&quot;)
 
@@ -647,7 +806,7 @@ val averageTemperatureService = HttpRoutes.of[IO] {
     Ok(getAverageTemperatureForCountryAndYear(country, year).map(s&quot;Average temperature for $country in $year was: &quot; + _))
 }
 // averageTemperatureService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@30158dda
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@1207ed10
 // )
 </code></pre>
 
@@ -674,7 +833,7 @@ import org.http4s.client.dsl.io._
 
 <pre><code class="language-scala">implicit val yearQueryParamDecoder: QueryParamDecoder[Year] =
   QueryParamDecoder[Int].map(Year.of)
-// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$7@278bfdb
+// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$7@5c1a09f4
 
 object OptionalYearQueryParamMatcher extends OptionalQueryParamDecoderMatcher[Year](&quot;year&quot;)
 
@@ -691,7 +850,7 @@ val routes2 = HttpRoutes.of[IO] {
     }
 }
 // routes2: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@417f93f
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@13b91087
 // )
 </code></pre>
 
@@ -705,7 +864,7 @@ val routes2 = HttpRoutes.of[IO] {
 
 <pre><code class="language-scala">implicit val yearQueryParamDecoder: QueryParamDecoder[Year] =
   QueryParamDecoder[Int].emap(i =&gt; Try(Year.of(i)).toEither.leftMap(t =&gt; ParseFailure(t.getMessage, t.getMessage)))
-// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$9@4f6e156b
+// yearQueryParamDecoder: QueryParamDecoder[Year] = org.http4s.QueryParamDecoder$$anon$9@27a717d6
 
 object YearQueryParamMatcher extends ValidatingQueryParamDecoderMatcher[Year](&quot;year&quot;)
 
@@ -717,7 +876,7 @@ val routes = HttpRoutes.of[IO] {
     )
 }
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@53892a01
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@a65015f
 // )
 </code></pre>
 
@@ -743,7 +902,7 @@ val routes = HttpRoutes.of[IO] {
     }
 }
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12557/423986472@1448c1cc
+//   org.http4s.HttpRoutes$$$Lambda$12545/391414006@6bcfc4e
 // )
 </code></pre>
 
