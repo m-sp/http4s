@@ -190,7 +190,7 @@ deliver them from there. For example, for all resources in the classpath under <
 
 <pre><code class="language-scala">val routes = resourceServiceBuilder[IO](&quot;/assets&quot;, blocker).toRoutes
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.server.staticcontent.ResourceServiceBuilder$$Lambda$12904/182558094@3e226be7
+//   org.http4s.server.staticcontent.ResourceServiceBuilder$$Lambda$12884/600607919@5e1c918
 // )
 </code></pre>
 
@@ -205,7 +205,7 @@ val routes = HttpRoutes.of[IO] {
     static(path, blocker, request)
 }
 // routes: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$11611/1145141400@37933af0
+//   org.http4s.HttpRoutes$$$Lambda$11569/2100694223@f229523
 // )
 </code></pre>
 
@@ -231,7 +231,7 @@ def isJsAsset(asset: WebjarAsset): Boolean =
 
 val webjars: HttpRoutes[IO] = webjarServiceBuilder[IO](blocker = blocker).withWebjarAssetFilter(isJsAsset).toRoutes
 // webjars: HttpRoutes[IO] = Kleisli(
-//   org.http4s.server.staticcontent.WebjarServiceBuilder$$Lambda$12906/1802077282@3e7364f0
+//   org.http4s.server.staticcontent.WebjarServiceBuilder$$Lambda$12886/1039307607@7346cbb7
 // )
 </code></pre>
 
@@ -248,6 +248,10 @@ val webjars: HttpRoutes[IO] = webjarServiceBuilder[IO](blocker = blocker).withWe
             
             <li class="nav-item">
 	      <a class="nav-link" href="/v1.0/">Quick Start</a>
+            </li>
+            
+            <li class="nav-item">
+	      <a class="nav-link" href="/v1.0/integrations/">Integrations</a>
             </li>
             
             <li class="nav-item">
