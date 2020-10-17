@@ -93,7 +93,7 @@ http4s to try our service.</p>
 
 <pre><code class="language-scala">scalaVersion := &quot;2.13.3&quot; // Also supports 2.11.x and 2.12.x
 
-val http4sVersion = &quot;1.0.0-M5&#43;4-5528c0de-SNAPSHOT&quot;
+val http4sVersion = &quot;1.0.0-M5&#43;6-15389b8f-SNAPSHOT&quot;
 
 // Only necessary for SNAPSHOT releases
 resolvers += Resolver.sonatypeRepo(&quot;snapshots&quot;)
@@ -133,15 +133,15 @@ val app = HttpRoutes.of[IO] {
     Ok(s&quot;Hello, $name.&quot;)
 }.orNotFound
 // app: cats.data.Kleisli[IO, Request[IO], Response[IO]] = Kleisli(
-//   org.http4s.syntax.KleisliResponseOps$$Lambda$11707/846073829@373d239a
+//   org.http4s.syntax.KleisliResponseOps$$Lambda$11713/2120140469@764df045
 // )
 
 val server = BlazeServerBuilder[IO](global).bindHttp(8080, &quot;localhost&quot;).withHttpApp(app).resource
 // server: Resource[IO, org.http4s.server.Server] = Bind(
 //   Allocate(
 //     Map(
-//       Delay(org.http4s.blazecore.package$$$Lambda$11711/380322003@4938a8ff),
-//       cats.effect.Resource$$$Lambda$11712/431435229@f0b83c8,
+//       Delay(org.http4s.blazecore.package$$$Lambda$11717/1971718601@4d9c81c4),
+//       cats.effect.Resource$$$Lambda$11718/635926158@22d093d3,
 //       StackTrace(
 //         List(
 //           cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -158,22 +158,22 @@ val server = BlazeServerBuilder[IO](global).bindHttp(8080, &quot;localhost&quot;
 //           org.http4s.server.blaze.BlazeServerBuilder.resource(BlazeServerBuilder.scala:328),
 //           repl.MdocSession$App.&lt;init&gt;(client.md:49),
 //           repl.MdocSession$.app(client.md:3),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withErr(Console.scala:196),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withOut(Console.scala:167),
-//           mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:81),
+//           mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
 //           mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
-//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:183),
-//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:150),
+//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:185),
+//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:152),
 //           mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
 //           mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
-//           mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:81),
-//           mdoc.internal.cli.MainOps.handleFile(MainOps.scala:109),
+//           mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//           mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
 //           mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:156),
 //           scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:...
 </code></pre>
@@ -185,7 +185,7 @@ running until we cancel the fiber.</p>
 // fiber: Fiber[IO, Nothing] = Tuple(
 //   Bind(
 //     Async(
-//       cats.effect.internals.IOAsync$$$Lambda$11595/296694718@3edeb50e,
+//       cats.effect.internals.IOAsync$$$Lambda$11601/1891080508@2cebff01,
 //       false,
 //       StackTrace(
 //         List(
@@ -211,11 +211,11 @@ running until we cancel the fiber.</p>
 //           cats.effect.IO.unsafeRunSync(IO.scala:256),
 //           repl.MdocSession$App.&lt;init&gt;(client.md:56),
 //           repl.MdocSession$.app(client.md:3),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withErr(Console.scala:196),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withOut(Console.scala:167),
@@ -266,9 +266,9 @@ and the URI we want:</p>
 // helloJames: IO[String] = Bind(
 //   Map(
 //     Delay(
-//       org.http4s.client.JavaNetClientBuilder$$Lambda$11794/1932788641@57263752
+//       org.http4s.client.JavaNetClientBuilder$$Lambda$11800/43702684@618d3dec
 //     ),
-//     cats.effect.Resource$$$Lambda$11747/1302004862@477e4516,
+//     cats.effect.Resource$$$Lambda$11752/766726164@48f8ca07,
 //     StackTrace(
 //       List(
 //         cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -340,7 +340,7 @@ val greetingList = people.parTraverse(hello)
 // greetingList: IO[Vector[String]] = Map(
 //   Map(
 //     Async(&lt;function3&gt;, true, null),
-//     cats.data.Chain$$$Lambda$11808/960587887@4a88f8de,
+//     cats.data.Chain$$$Lambda$11814/10163734@37b73848,
 //     StackTrace(
 //       List(
 //         cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -360,22 +360,22 @@ val greetingList = people.parTraverse(hello)
 //         cats.syntax.ParallelTraversableOps$.parTraverse$extension(parallel.scala:112),
 //         repl.MdocSession$App.&lt;init&gt;(client.md:128),
 //         repl.MdocSession$.app(client.md:3),
-//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //         scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //         scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //         scala.Console$.withErr(Console.scala:196),
-//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//         mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //         scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //         scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //         scala.Console$.withOut(Console.scala:167),
-//         mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:81),
+//         mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
 //         mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
-//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:183),
-//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:150),
+//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:185),
+//         mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:152),
 //         mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
 //         mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
-//         mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:81),
-//         mdoc.internal.cli.MainOps.handleFile(MainOps.scala:109),
+//         mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//         mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
 //         mdoc.internal.cli.MainOps.$anonfun$generateCompleteSite$1(MainOps.scala:156),
 //         scala.collection.LinearSeqOptimized.foldLeft(LinearSeqOptimized.scala:12...
 </code></pre>
@@ -400,7 +400,7 @@ server.</li>
 //   Map(
 //     Map(
 //       Async(&lt;function3&gt;, true, null),
-//       cats.data.Chain$$$Lambda$11808/960587887@4a88f8de,
+//       cats.data.Chain$$$Lambda$11814/10163734@37b73848,
 //       StackTrace(
 //         List(
 //           cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -420,22 +420,22 @@ server.</li>
 //           cats.syntax.ParallelTraversableOps$.parTraverse$extension(parallel.scala:112),
 //           repl.MdocSession$App.&lt;init&gt;(client.md:128),
 //           repl.MdocSession$.app(client.md:3),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withErr(Console.scala:196),
-//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//           mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //           scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //           scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //           scala.Console$.withOut(Console.scala:167),
-//           mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:81),
+//           mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
 //           mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
-//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:183),
-//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:150),
+//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:185),
+//           mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:152),
 //           mdoc.internal.markdown.Processor.processDocument(Processor.scala:52),
 //           mdoc.internal.markdown.Markdown$.toMarkdown(Markdown.scala:132),
-//           mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:81),
-//           mdoc.internal.cli.MainOps.handleFile(MainOps.scala:109),
+//           mdoc.internal.cli.MainOps.handleMarkdown(MainOps.scala:82),
+//           mdoc.internal.cli.MainOps.handleFile(MainOps.scala:110),
 // ...
 greetingsStringEffect.unsafeRunSync()
 // res1: String = &quot;&quot;&quot;Hello, Michael.
@@ -568,14 +568,14 @@ import com.codahale.metrics.SharedMetricRegistries
 </code></pre>
 
 <pre><code class="language-scala">implicit val clock = Clock.create[IO]
-// clock: Clock[IO] = cats.effect.Clock$$anon$1@309d19e9
+// clock: Clock[IO] = cats.effect.Clock$$anon$1@6ee9feb5
 val registry = SharedMetricRegistries.getOrCreate(&quot;default&quot;)
-// registry: com.codahale.metrics.MetricRegistry = com.codahale.metrics.MetricRegistry@3d5e592c
+// registry: com.codahale.metrics.MetricRegistry = com.codahale.metrics.MetricRegistry@6092ee58
 val requestMethodClassifier = (r: Request[IO]) =&gt; Some(r.method.toString.toLowerCase)
 // requestMethodClassifier: Request[IO] =&gt; Some[String] = &lt;function1&gt;
 
 val meteredClient = Metrics[IO](Dropwizard(registry, &quot;prefix&quot;), requestMethodClassifier)(httpClient)
-// meteredClient: Client[IO] = org.http4s.client.Client$$anon$1@74d1ab25
+// meteredClient: Client[IO] = org.http4s.client.Client$$anon$1@691c5463
 </code></pre>
 
 <p>A <code>classifier</code> is just a function Request[F] =&gt; Option[String] that allows
@@ -600,7 +600,7 @@ import org.http4s.metrics.prometheus.Prometheus
 </code></pre>
 
 <pre><code class="language-scala">implicit val clock = Clock.create[IO]
-// clock: Clock[IO] = cats.effect.Clock$$anon$1@3cfd71b1
+// clock: Clock[IO] = cats.effect.Clock$$anon$1@111e6bfa
 val requestMethodClassifier = (r: Request[IO]) =&gt; Some(r.method.toString.toLowerCase)
 // requestMethodClassifier: Request[IO] =&gt; Some[String] = &lt;function1&gt;
 
@@ -614,9 +614,9 @@ val meteredClient: Resource[IO, Client[IO]] =
 //     Map(
 //       Map(
 //         Delay(
-//           org.http4s.metrics.prometheus.Prometheus$$$Lambda$12224/305240240@64776596
+//           org.http4s.metrics.prometheus.Prometheus$$$Lambda$12249/614258515@30a3333a
 //         ),
-//         cats.effect.Resource$$$Lambda$11745/742659409@2bafc70d,
+//         cats.effect.Resource$$$Lambda$11750/722567339@4734fb58,
 //         StackTrace(
 //           List(
 //             cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -660,9 +660,9 @@ to add a label to every metric based on the <code>Request</code></p>
 // res3: IO[String] = Bind(
 //   Map(
 //     Delay(
-//       org.http4s.client.JavaNetClientBuilder$$Lambda$11794/1932788641@52dec9de
+//       org.http4s.client.JavaNetClientBuilder$$Lambda$11800/43702684@4c000091
 //     ),
-//     cats.effect.Resource$$$Lambda$11747/1302004862@5f95acd,
+//     cats.effect.Resource$$$Lambda$11752/766726164@2e23e350,
 //     StackTrace(
 //       List(
 //         cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -726,7 +726,7 @@ import org.http4s.Method._
 //     HttpVersion(1, 1),
 //     Headers(Authorization: Bearer open sesame, Accept: application/json),
 //     Stream(..),
-//     io.chrisdavenport.vault.Vault@6f99153f
+//     io.chrisdavenport.vault.Vault@7fcb3ca7
 //   )
 // )
 
@@ -745,10 +745,10 @@ httpClient.expect[String](request)
 //       HttpVersion(1, 1),
 //       Headers(Authorization: Bearer open sesame, Accept: application/json),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@6f99153f
+//       io.chrisdavenport.vault.Vault@7fcb3ca7
 //     )
 //   ),
-//   org.http4s.client.DefaultClient$$Lambda$12227/1253811781@250d0d25,
+//   org.http4s.client.DefaultClient$$Lambda$12252/1628281967@722d83bb,
 //   StackTrace(
 //     List(
 //       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -764,18 +764,18 @@ httpClient.expect[String](request)
 //       org.http4s.client.DefaultClient.expect(DefaultClient.scala:105),
 //       repl.MdocSession$App.&lt;init&gt;(client.md:267),
 //       repl.MdocSession$.app(client.md:3),
-//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //       scala.Console$.withErr(Console.scala:196),
-//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //       scala.Console$.withOut(Console.scala:167),
-//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:81),
+//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
 //       mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
-//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:183),
-//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:150),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:185),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:152),
 // ...
 </code></pre>
 
@@ -808,7 +808,7 @@ val postRequest = POST(
 //     HttpVersion(1, 1),
 //     Headers(Content-Type: application/x-www-form-urlencoded; charset=UTF-8, Content-Length: 78),
 //     Stream(..),
-//     io.chrisdavenport.vault.Vault@17764f62
+//     io.chrisdavenport.vault.Vault@296a3b1e
 //   )
 // )
 
@@ -827,10 +827,10 @@ httpClient.expect[AuthResponse](postRequest)
 //       HttpVersion(1, 1),
 //       Headers(Content-Type: application/x-www-form-urlencoded; charset=UTF-8, Content-Length: 78),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@17764f62
+//       io.chrisdavenport.vault.Vault@296a3b1e
 //     )
 //   ),
-//   org.http4s.client.DefaultClient$$Lambda$12227/1253811781@72a9ceb1,
+//   org.http4s.client.DefaultClient$$Lambda$12252/1628281967@11128062,
 //   StackTrace(
 //     List(
 //       cats.effect.internals.IOTracing$.buildFrame(IOTracing.scala:48),
@@ -846,17 +846,17 @@ httpClient.expect[AuthResponse](postRequest)
 //       org.http4s.client.DefaultClient.expect(DefaultClient.scala:105),
 //       repl.MdocSession$App.&lt;init&gt;(client.md:267),
 //       repl.MdocSession$.app(client.md:3),
-//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:82),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$2(DocumentBuilder.scala:89),
 //       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //       scala.Console$.withErr(Console.scala:196),
-//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:82),
+//       mdoc.internal.document.DocumentBuilder$$doc$.$anonfun$build$1(DocumentBuilder.scala:89),
 //       scala.runtime.java8.JFunction0$mcV$sp.apply(JFunction0$mcV$sp.java:23),
 //       scala.util.DynamicVariable.withValue(DynamicVariable.scala:62),
 //       scala.Console$.withOut(Console.scala:167),
-//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:81),
+//       mdoc.internal.document.DocumentBuilder$$doc$.build(DocumentBuilder.scala:88),
 //       mdoc.internal.markdown.MarkdownBuilder$.buildDocument(MarkdownBuilder.scala:44),
-//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:183),
+//       mdoc.internal.markdown.Processor.processScalaInputs(Processor.scala:185),
 // ...
 </code></pre>
 
