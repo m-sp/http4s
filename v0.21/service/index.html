@@ -154,7 +154,7 @@ greet.</p>
     Ok(s&quot;Hello, $name.&quot;)
 }
 // helloWorldService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12563/196087457@52365e9e
+//   org.http4s.HttpRoutes$$$Lambda$12551/1729528358@707348fc
 // )
 </code></pre>
 
@@ -187,7 +187,7 @@ val tweetService = HttpRoutes.of[IO] {
     getTweet(tweetId).flatMap(Ok(_))
 }
 // tweetService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$12563/196087457@7437e21c
+//   org.http4s.HttpRoutes$$$Lambda$12551/1729528358@13363fc3
 // )
 </code></pre>
 
@@ -215,14 +215,14 @@ import org.http4s.server.Router
 
 <pre><code class="language-scala">val services = tweetService &lt;+&gt; helloWorldService
 // services: cats.data.Kleisli[cats.data.OptionT[IO, β$0$], Request[IO], Response[IO]] = Kleisli(
-//   cats.data.KleisliSemigroupK$$Lambda$12564/1247720946@2bc7993d
+//   cats.data.KleisliSemigroupK$$Lambda$12552/2080606880@776bd31e
 // )
 val httpApp = Router(&quot;/&quot; -&gt; helloWorldService, &quot;/api&quot; -&gt; services).orNotFound
 // httpApp: cats.data.Kleisli[IO, Request[IO], Response[IO]] = Kleisli(
-//   org.http4s.syntax.KleisliResponseOps$$Lambda$12662/1768895922@b8d7ef
+//   org.http4s.syntax.KleisliResponseOps$$Lambda$12650/628557188@37f532e9
 // )
 val serverBuilder = BlazeServerBuilder[IO](global).bindHttp(8080, &quot;localhost&quot;).withHttpApp(httpApp)
-// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@601aabc8
+// serverBuilder: BlazeServerBuilder[IO] = org.http4s.server.blaze.BlazeServerBuilder@5daba843
 </code></pre>
 
 <p>The <code>bindHttp</code> call isn&rsquo;t strictly necessary as the server will be set to run
@@ -235,7 +235,7 @@ associates the specified routes with this http server instance.</p>
 // fiber: Fiber[IO, Nothing] = Tuple(
 //   Bind(
 //     Async(
-//       cats.effect.internals.IOAsync$$$Lambda$12556/333501351@2bf692d5,
+//       cats.effect.internals.IOAsync$$$Lambda$12544/318777799@7f414c12,
 //       false,
 //       StackTrace(
 //         List(
