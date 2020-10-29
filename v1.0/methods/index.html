@@ -103,9 +103,9 @@ def updateTweet(id: Int, tweet: Tweet): IO[Option[TweetWithId]] = ???
 def deleteTweet(id: Int): IO[Unit] = ???
 
 implicit val tweetWithIdEncoder = jsonEncoderOf[IO, TweetWithId]
-// tweetWithIdEncoder: EntityEncoder[IO, TweetWithId] = org.http4s.EntityEncoder$$anon$1@33700f13
+// tweetWithIdEncoder: EntityEncoder[IO, TweetWithId] = org.http4s.EntityEncoder$$anon$1@4805309f
 implicit val tweetDecoder = jsonOf[IO, Tweet]
-// tweetDecoder: EntityDecoder[IO, Tweet] = org.http4s.EntityDecoder$$anon$2@e1def18
+// tweetDecoder: EntityDecoder[IO, Tweet] = org.http4s.EntityDecoder$$anon$2@1c514db
 
 val tweetService = HttpRoutes.of[IO] {
   case GET -&gt; Root / &quot;tweets&quot; / IntVar(tweetId) =&gt;
@@ -125,7 +125,7 @@ val tweetService = HttpRoutes.of[IO] {
       .flatMap(_ =&gt; Ok())
 }
 // tweetService: HttpRoutes[IO] = Kleisli(
-//   org.http4s.HttpRoutes$$$Lambda$11592/1940430118@49d4d820
+//   org.http4s.HttpRoutes$$$Lambda$11560/302568155@266e167a
 // )
 </code></pre>
 
