@@ -145,7 +145,7 @@ case class Video(body: String) extends Resp
 //       HttpVersion(1, 1),
 //       Headers(Content-Type: text/plain; charset=UTF-8, Content-Length: 0),
 //       Stream(..),
-//       io.chrisdavenport.vault.Vault@7494888a
+//       io.chrisdavenport.vault.Vault@2b8e1da6
 //     )
 //   ),
 //   &lt;function1&gt;,
@@ -186,15 +186,15 @@ val audioDec = EntityDecoder.decodeBy(MediaType.audio.ogg) { (m: Media[IO]) =&gt
     m.as[String].map(s =&gt; Audio(s).asRight[DecodeFailure])
   }
 }
-// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@3167f38e
+// audioDec: EntityDecoder[IO, Audio] = org.http4s.EntityDecoder$$anon$7@29d4bfbb
 val videoDec = EntityDecoder.decodeBy(MediaType.video.ogg) { (m: Media[IO]) =&gt;
   EitherT {
     m.as[String].map(s =&gt; Video(s).asRight[DecodeFailure])
   }
 }
-// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@7d3d9f9b
+// videoDec: EntityDecoder[IO, Video] = org.http4s.EntityDecoder$$anon$7@68751a0d
 implicit val bothDec = audioDec.widen[Resp] orElse videoDec.widen[Resp]
-// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@465ef7b9
+// bothDec: EntityDecoder[IO, Resp] = org.http4s.EntityDecoder$$anon$5$$anon$6@b631d98
 println(response.flatMap(_.as[Resp]).unsafeRunSync())
 // Audio()
 </code></pre>
