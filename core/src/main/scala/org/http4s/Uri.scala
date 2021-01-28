@@ -625,7 +625,7 @@ object Uri extends UriPlatform {
     import Segment.{segment, segmentNz, segmentNzNc}
 
     /* path-abempty  = *( "/" segment ) */
-    val pathAbempty: cats.parse.Parser0[Path] =
+    lazy val pathAbempty: cats.parse.Parser0[Path] =
       (char('/') *> segment).rep0.map {
         case Nil => Path.empty
         case List(Segment.empty) => Path.Root
